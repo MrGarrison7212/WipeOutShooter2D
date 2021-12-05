@@ -2,24 +2,15 @@
 //
 
 #include "pch.h"
+#include "Game.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Works");
+	Game game;
 
-	while (window.isOpen()) {
-
-		sf::Event event;
-		while (window.pollEvent(event)) {
-
-
-		}
-
-		window.clear();
-		window.display();
-	}
+	game.run();
 
 	return 0;
 }
