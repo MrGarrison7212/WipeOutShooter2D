@@ -16,9 +16,8 @@ private:
 	Player* player;
 
 	//Bullets
-	Bullet b1;
-	std::vector<Bullet> bullets;
-
+	Bullet* b1;
+	std::vector<Bullet*> bullets;
 	//Enemy
 
 
@@ -32,6 +31,7 @@ private:
 	//private functions
 	void initWindow();
 	void initPlayer();
+	void initBullet();
 public:
 	Game();
 	virtual ~Game();

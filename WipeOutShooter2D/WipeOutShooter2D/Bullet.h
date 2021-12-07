@@ -13,11 +13,15 @@ private:
 public:
 	Bullet();
 
-	Bullet(float radius, float dir_X, float dir_Y, float movement_speed);
+	Bullet(float dir_X, float dir_Y, float movement_speed);
 
 	virtual ~Bullet();
 
 	//functions
+	void setPos(sf::Vector2f vect);
+	void setDir(sf::Vector2f dir);
+	const float getSpeed() const;
+
 	void update();
 	void render(sf::RenderTarget* target);
 };

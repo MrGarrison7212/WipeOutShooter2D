@@ -14,6 +14,11 @@ void Game::initPlayer()
 	this->player = new Player();
 }
 
+void Game::initBullet()
+{
+
+}
+
 void Game::updateVectors()
 {
 	this->playerCenter = sf::Vector2f(this->player->getPos().x + this->player->getRad(), this->player->getPos().y + this->player->getRad());
@@ -25,12 +30,24 @@ void Game::updateVectors()
 
 void Game::updateBullets()
 {
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		this->b1 = new Bullet();
+		this->b1->setPos(this->playerCenter);
+		this->b1->setDir(this->aimDirNorm * this->b1->getSpeed());
+
+		this->bullets.push_back(b1);
+	}
+	for (size_t i = 0; i < this->bullets.size(); i++)
+	{
+		this->bullets[i]->update();
+	}
 }
 
 Game::Game()
 {
 	this->initWindow();
 	this->initPlayer();
+	this->initBullet();
 }
 
 
@@ -38,6 +55,10 @@ Game::~Game()
 {
 	delete this->window;
 	delete this->player;
+	delete this->b1;
+	for (auto *i : this->bullets) {
+		delete i;
+	}
 }
 
 void Game::run()
@@ -78,12 +99,18 @@ void Game::update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
 		this->player->move(0.f, 1.f);
 	}
+
+	//bullets and shooting
+	this->updateBullets();
 }
 
 void Game::render()
 {
 	this->window->clear();
 	//draw
+	for (auto *bullet : this->bullets) {
+		bullet->render(this->window);
+	}
 	this->player->render(*this->window);
 	this->window->display();
 
