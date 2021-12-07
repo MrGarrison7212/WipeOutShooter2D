@@ -19,6 +19,23 @@ Player::~Player()
 {
 }
 
+const sf::Vector2f & Player::getPos() const
+{
+	return this->shape.getPosition();
+}
+
+const sf::FloatRect Player::getBounds() const
+{
+	return this->shape.getGlobalBounds();
+}
+
+const float Player::getRad() const
+{
+	return this->shape.getRadius();
+}
+
+
+
 void Player::move(const float dirX, const float dirY)
 {
 	this->shape.move(this->movementSpeed * dirX, this->movementSpeed * dirY);

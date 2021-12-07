@@ -14,6 +14,19 @@ void Game::initPlayer()
 	this->player = new Player();
 }
 
+void Game::updateVectors()
+{
+	this->playerCenter = sf::Vector2f(this->player->getPos().x + this->player->getRad(), this->player->getPos().y + this->player->getRad());
+	this->mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(*this->window));
+	this->aimDir = this->mousePosWindow - this->playerCenter;
+	this->aimDirNorm = this->aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.x, 2));
+
+}
+
+void Game::updateBullets()
+{
+}
+
 Game::Game()
 {
 	this->initWindow();
@@ -46,6 +59,11 @@ void Game::update()
 			this->window->close();
 		}
 	}
+
+	//update vectors
+	this->updateVectors();
+	std::cout << this->aimDirNorm.x << " " << this->aimDirNorm.y << "\n";
+
 
 	// move player
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {

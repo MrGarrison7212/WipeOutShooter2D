@@ -10,10 +10,6 @@ private:
 
 	float movementSpeed;
 
-	sf::Vector2f playerCenter;
-	sf::Vector2f mousePosWindow;
-	sf::Vector2f aimDir;
-	sf::Vector2f aimDirNorm;
 
 	//private functions
 	void initCircleShape();
@@ -21,6 +17,12 @@ private:
 public:
 	Player();
 	virtual ~Player();
+
+	//accessor
+	const sf::Vector2f& getPos() const;
+	const sf::FloatRect getBounds() const;
+	const float getRad() const;
+
 
 	//functions
 	void move(const float dirX, const float dirY);
