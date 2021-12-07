@@ -46,6 +46,20 @@ void Game::update()
 			this->window->close();
 		}
 	}
+
+	// move player
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+		this->player->move(-1.f, 0.f);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+		this->player->move(1.f, 0.f);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+		this->player->move(0.f, -1.f);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+		this->player->move(0.f, 1.f);
+	}
 }
 
 void Game::render()

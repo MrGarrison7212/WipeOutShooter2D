@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Bullet.h"
 #include <SFML/Graphics.hpp>
 
 

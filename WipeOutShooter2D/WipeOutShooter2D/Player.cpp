@@ -10,12 +10,18 @@ void Player::initCircleShape()
 
 Player::Player()
 {
+	this->movementSpeed = 5.f;
 	this->initCircleShape();
 }
 
 
 Player::~Player()
 {
+}
+
+void Player::move(const float dirX, const float dirY)
+{
+	this->shape.move(this->movementSpeed * dirX, this->movementSpeed * dirY);
 }
 
 void Player::update()
