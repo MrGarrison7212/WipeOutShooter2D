@@ -9,15 +9,22 @@ void Game::initWindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
+void Game::initPlayer()
+{
+	this->player = new Player();
+}
+
 Game::Game()
 {
 	this->initWindow();
+	this->initPlayer();
 }
 
 
 Game::~Game()
 {
 	delete this->window;
+	delete this->player;
 }
 
 void Game::run()
@@ -44,5 +51,8 @@ void Game::update()
 void Game::render()
 {
 	this->window->clear();
+	//draw
+	this->player->render(*this->window);
 	this->window->display();
+
 }
