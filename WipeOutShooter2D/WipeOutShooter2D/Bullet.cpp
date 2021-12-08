@@ -10,7 +10,7 @@ Bullet::Bullet()
 	this->shape.setFillColor(sf::Color::Red);
 	this->direction.x = 0.f;
 	this->direction.y = 0.f;
-	this->maxSpeed = 5.f;
+	this->maxSpeed = 4.f;
 }
 
 Bullet::Bullet(float dir_X, float dir_Y, float movement_speed)

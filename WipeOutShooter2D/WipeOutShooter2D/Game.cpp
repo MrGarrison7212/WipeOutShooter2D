@@ -24,7 +24,7 @@ void Game::updateVectors()
 	this->playerCenter = sf::Vector2f(this->player->getPos().x + this->player->getRad(), this->player->getPos().y + this->player->getRad());
 	this->mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(*this->window));
 	this->aimDir = this->mousePosWindow - this->playerCenter;
-	this->aimDirNorm = this->aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.x, 2));
+	this->aimDirNorm = this->aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
 
 }
 
