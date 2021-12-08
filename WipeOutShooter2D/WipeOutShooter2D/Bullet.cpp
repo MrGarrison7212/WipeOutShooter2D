@@ -28,6 +28,12 @@ Bullet::~Bullet()
 {
 }
 
+const sf::Vector2f & Bullet::getPos() const
+{
+	return this->shape.getPosition();
+
+}
+
 void Bullet::setPos(sf::Vector2f vect)
 {
 	this->shape.setPosition(vect);

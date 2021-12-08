@@ -40,6 +40,11 @@ void Game::updateBullets()
 	for (size_t i = 0; i < this->bullets.size(); i++)
 	{
 		this->bullets[i]->update();
+
+		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > window->getSize().x
+			|| bullets[i]->getPos().y < 0 || bullets[i]->getPos().y > window->getSize().y) {
+			bullets.erase(bullets.begin() + i);
+		}
 	}
 }
 

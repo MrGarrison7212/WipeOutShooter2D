@@ -18,6 +18,7 @@ public:
 	virtual ~Bullet();
 
 	//functions
+	const sf::Vector2f& getPos() const;
 	void setPos(sf::Vector2f vect);
 	void setDir(sf::Vector2f dir);
 	const float getSpeed() const;
