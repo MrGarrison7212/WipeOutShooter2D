@@ -83,7 +83,6 @@ void Game::update()
 
 	//update vectors
 	this->updateVectors();
-	std::cout << this->aimDirNorm.x << " " << this->aimDirNorm.y << "\n";
 
 
 	// move player
