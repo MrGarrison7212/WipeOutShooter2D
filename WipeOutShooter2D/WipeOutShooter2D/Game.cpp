@@ -48,6 +48,10 @@ void Game::updateBullets()
 	}
 }
 
+void Game::updateEnemiesAndCombat() {
+
+}
+
 Game::Game()
 {
 	this->initWindow();
