@@ -34,7 +34,7 @@ void Game::updateVectors()
 
 }
 
-void Game::updateBullets()
+void Game::updateBulletsAndCombat()
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		this->b1 = new Bullet();
@@ -50,13 +50,21 @@ void Game::updateBullets()
 		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > window->getSize().x
 			|| bullets[i]->getPos().y < 0 || bullets[i]->getPos().y > window->getSize().y) {
 			bullets.erase(bullets.begin() + i);
-		}
+		} else
+			for (int k = 0; k < this->enemies.size(); k++) {
+					if (this->bullets[i]->getBounds().intersects(enemies[k]->getBounds())) {
+						this->bullets.erase(bullets.begin() + i);
+						this->enemies.erase(enemies.begin() + k);
+						this->enemyCounter--;
+						break;
+					}
+			}
 	}
 }
 
-void Game::updateEnemiesAndCombat() {
+void Game::updateEnemies() {
 	this->spawnTimer += 0.5f;
-	if (this->spawnTimer >= spawnTimerMax && this->enemyCounter < 5) {
+	if (this->spawnTimer >= spawnTimerMax && this->enemyCounter < 10) {
 		this->e1 = new Enemy();
 		this->e1->setPos(sf::Vector2f(rand()%window->getSize().x, rand() % window->getSize().y));
 		this->enemies.push_back(e1);
@@ -127,8 +135,8 @@ void Game::update()
 	}
 
 	//bullets and shooting
-	this->updateBullets();
-	this->updateEnemiesAndCombat();
+	this->updateBulletsAndCombat();
+	this->updateEnemies();
 }
 
 void Game::render()

@@ -44,8 +44,8 @@ public:
 
 	//functions
 	void updateVectors();
-	void updateBullets();
-	void updateEnemiesAndCombat();
+	void updateBulletsAndCombat();
+	void updateEnemies();
 
 	void run();
 

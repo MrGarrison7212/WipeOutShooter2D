@@ -34,6 +34,11 @@ const sf::Vector2f & Bullet::getPos() const
 
 }
 
+const sf::FloatRect Bullet::getBounds() const
+{
+	return this->shape.getGlobalBounds();
+}
+
 
 void Bullet::setPos(sf::Vector2f vect)
 {

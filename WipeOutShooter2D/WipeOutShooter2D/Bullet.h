@@ -19,6 +19,7 @@ public:
 
 	//functions
 	const sf::Vector2f& getPos() const;
+	const sf::FloatRect getBounds() const;
 	void setPos(sf::Vector2f vect);
 	void setDir(sf::Vector2f dir);
 	const float getSpeed() const;
