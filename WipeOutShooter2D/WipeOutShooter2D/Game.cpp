@@ -19,6 +19,12 @@ void Game::initBullet()
 
 }
 
+void Game::initEnemies()
+{
+	this->spawnTimerMax = 50.f;
+	this->spawnTimer = this->spawnTimerMax;
+}
+
 void Game::updateVectors()
 {
 	this->playerCenter = sf::Vector2f(this->player->getPos().x + this->player->getRad(), this->player->getPos().y + this->player->getRad());
@@ -49,7 +55,14 @@ void Game::updateBullets()
 }
 
 void Game::updateEnemiesAndCombat() {
-
+	this->spawnTimer += 0.5f;
+	if (this->spawnTimer >= spawnTimerMax && this->enemyCounter < 5) {
+		this->e1 = new Enemy();
+		this->e1->setPos(sf::Vector2f(rand()%window->getSize().x, rand() % window->getSize().y));
+		this->enemies.push_back(e1);
+		this->spawnTimer = 0.f;
+		this->enemyCounter++;
+	}
 }
 
 Game::Game()
@@ -57,6 +70,7 @@ Game::Game()
 	this->initWindow();
 	this->initPlayer();
 	this->initBullet();
+	this->initEnemies();
 }
 
 
@@ -65,7 +79,11 @@ Game::~Game()
 	delete this->window;
 	delete this->player;
 	delete this->b1;
+	delete this->e1;
 	for (auto *i : this->bullets) {
+		delete i;
+	}
+	for (auto *i : this->enemies) {
 		delete i;
 	}
 }
@@ -110,6 +128,7 @@ void Game::update()
 
 	//bullets and shooting
 	this->updateBullets();
+	this->updateEnemiesAndCombat();
 }
 
 void Game::render()
@@ -119,6 +138,11 @@ void Game::render()
 	for (auto *bullet : this->bullets) {
 		bullet->render(this->window);
 	}
+
+	for (auto *enemy : this->enemies) {
+		enemy->render(this->window);
+	}
+
 	this->player->render(*this->window);
 	this->window->display();
 

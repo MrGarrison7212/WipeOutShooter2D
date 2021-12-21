@@ -3,6 +3,7 @@
 #include <math.h>
 #include "Player.h"
 #include "Bullet.h"
+#include "Enemy.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -19,8 +20,12 @@ private:
 	Bullet* b1;
 	std::vector<Bullet*> bullets;
 	//Enemy
+	std::vector<Enemy*> enemies;
+	Enemy* e1;
 
-
+	float spawnTimer;
+	float spawnTimerMax;
+	int enemyCounter;
 	//Vectors
 
 	sf::Vector2f playerCenter;
@@ -32,6 +37,7 @@ private:
 	void initWindow();
 	void initPlayer();
 	void initBullet();
+	void initEnemies();
 public:
 	Game();
 	virtual ~Game();

@@ -34,6 +34,7 @@ const sf::Vector2f & Bullet::getPos() const
 
 }
 
+
 void Bullet::setPos(sf::Vector2f vect)
 {
 	this->shape.setPosition(vect);
