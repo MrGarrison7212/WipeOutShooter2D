@@ -36,7 +36,6 @@ private:
 	//private functions
 	void initWindow();
 	void initPlayer();
-	void initBullet();
 	void initEnemies();
 public:
 	Game();

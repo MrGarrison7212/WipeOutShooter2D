@@ -14,10 +14,7 @@ void Game::initPlayer()
 	this->player = new Player();
 }
 
-void Game::initBullet()
-{
 
-}
 
 void Game::initEnemies()
 {
@@ -77,7 +74,6 @@ Game::Game()
 {
 	this->initWindow();
 	this->initPlayer();
-	this->initBullet();
 	this->initEnemies();
 }
 
