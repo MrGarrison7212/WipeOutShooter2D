@@ -5,6 +5,8 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <sstream>
 
 
 class Game
@@ -13,6 +15,10 @@ class Game
 private:
 	sf::RenderWindow* window;
 
+	sf::Font font;
+	sf::Text pointText;
+
+	unsigned points;
 	//player
 	Player* player;
 
@@ -37,6 +43,8 @@ private:
 	void initWindow();
 	void initPlayer();
 	void initEnemies();
+	void initSystems();
+	void initGUI();
 public:
 	Game();
 	virtual ~Game();
@@ -45,6 +53,7 @@ public:
 	void updateVectors();
 	void updateBulletsAndCombat();
 	void updateEnemies();
+	void updateGUI();
 
 	void run();
 

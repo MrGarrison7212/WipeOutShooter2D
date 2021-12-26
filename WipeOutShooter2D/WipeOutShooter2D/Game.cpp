@@ -22,6 +22,27 @@ void Game::initEnemies()
 	this->spawnTimer = this->spawnTimerMax;
 }
 
+void Game::initSystems()
+{
+	this->points = 0;
+}
+
+void Game::initGUI()
+{
+
+	//loadfonts
+	if (!this->font.loadFromFile("Data/SpaceMission-rgyw9.otf")) {
+		std::cout << "ERROR::GAME::Failed to load font" << "\n";
+	};
+
+	//init
+	this->pointText.setPosition(615, 20.f);
+	this->pointText.setFont(this->font);
+	this->pointText.setCharacterSize(25);
+	this->pointText.setFillColor(sf::Color::White);
+	this->pointText.setString("test");
+}
+
 void Game::updateVectors()
 {
 	this->playerCenter = sf::Vector2f(this->player->getPos().x + this->player->getRad(), this->player->getPos().y + this->player->getRad());
@@ -53,6 +74,7 @@ void Game::updateBulletsAndCombat()
 						this->bullets.erase(bullets.begin() + i);
 						this->enemies.erase(enemies.begin() + k);
 						this->enemyCounter--;
+						this->points += 5;
 						break;
 					}
 			}
@@ -70,9 +92,18 @@ void Game::updateEnemies() {
 	}
 }
 
+void Game::updateGUI()
+{
+	std::stringstream ss;
+	ss << "  Points: " << this->points;
+	this->pointText.setString(ss.str());
+}
+
 Game::Game()
 {
 	this->initWindow();
+	this->initGUI();
+	this->initSystems();
 	this->initPlayer();
 	this->initEnemies();
 }
@@ -133,6 +164,7 @@ void Game::update()
 	//bullets and shooting
 	this->updateBulletsAndCombat();
 	this->updateEnemies();
+	this->updateGUI();
 }
 
 void Game::render()
@@ -148,6 +180,10 @@ void Game::render()
 	}
 
 	this->player->render(*this->window);
+
+	this->window->draw(this->pointText);
+
+
 	this->window->display();
 
 }
