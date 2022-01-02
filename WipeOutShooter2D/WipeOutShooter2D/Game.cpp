@@ -24,6 +24,10 @@ void Game::initEnemies()
 
 void Game::initSystems()
 {
+	this->hit_buf.loadFromFile("Data/hit.wav");
+
+	this->hit_sound.setBuffer(hit_buf);
+	//sound
 	this->points = 0;
 }
 
@@ -55,6 +59,7 @@ void Game::updateVectors()
 void Game::updateBulletsAndCombat()
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
 		this->b1 = new Bullet();
 		this->b1->setPos(this->playerCenter);
 		this->b1->setDir(this->aimDirNorm * this->b1->getSpeed());
@@ -65,16 +70,19 @@ void Game::updateBulletsAndCombat()
 	{
 		this->bullets[i]->update();
 
+
 		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > window->getSize().x
 			|| bullets[i]->getPos().y < 0 || bullets[i]->getPos().y > window->getSize().y) {
 			bullets.erase(bullets.begin() + i);
 		} else
 			for (int k = 0; k < this->enemies.size(); k++) {
 					if (this->bullets[i]->getBounds().intersects(enemies[k]->getBounds())) {
+						this->hit_sound.play();
 						this->bullets.erase(bullets.begin() + i);
 						this->enemies.erase(enemies.begin() + k);
 						this->enemyCounter--;
 						this->points += 5;
+						//sound
 						break;
 					}
 			}

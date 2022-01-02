@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include <sstream>
 
@@ -17,6 +18,10 @@ private:
 
 	sf::Font font;
 	sf::Text pointText;
+	//sound
+	sf::SoundBuffer hit_buf;
+
+	sf::Sound hit_sound;
 
 	unsigned points;
 	//player
