@@ -23,11 +23,17 @@ void Game::initEnemies()
 }
 
 void Game::initSystems()
-{
+{	//sound
 	this->hit_buf.loadFromFile("Data/hit.wav");
 
 	this->hit_sound.setBuffer(hit_buf);
-	//sound
+
+	this->background_music.openFromFile("Data/beat.ogg");
+
+	this->background_music.play();
+
+	this->background_music.setLoop(true);
+
 	this->points = 0;
 }
 
@@ -77,12 +83,12 @@ void Game::updateBulletsAndCombat()
 		} else
 			for (int k = 0; k < this->enemies.size(); k++) {
 					if (this->bullets[i]->getBounds().intersects(enemies[k]->getBounds())) {
-						this->hit_sound.play();
 						this->bullets.erase(bullets.begin() + i);
 						this->enemies.erase(enemies.begin() + k);
 						this->enemyCounter--;
 						this->points += 5;
 						//sound
+						this->hit_sound.play();
 						break;
 					}
 			}
@@ -106,6 +112,7 @@ void Game::updateGUI()
 	ss << "  Points: " << this->points;
 	this->pointText.setString(ss.str());
 }
+
 
 Game::Game()
 {
@@ -142,6 +149,7 @@ void Game::run()
 void Game::update()
 {
 	sf::Event e;
+
 	while (this->window->pollEvent(e)) {
 		if (e.Event::type == sf::Event::Closed) {
 			this->window->close();
@@ -153,7 +161,6 @@ void Game::update()
 
 	//update vectors
 	this->updateVectors();
-
 
 	// move player
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
@@ -173,6 +180,7 @@ void Game::update()
 	this->updateBulletsAndCombat();
 	this->updateEnemies();
 	this->updateGUI();
+
 }
 
 void Game::render()

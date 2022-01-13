@@ -23,6 +23,8 @@ private:
 
 	sf::Sound hit_sound;
 
+	sf::Music background_music;
+
 	unsigned points;
 	//player
 	Player* player;
